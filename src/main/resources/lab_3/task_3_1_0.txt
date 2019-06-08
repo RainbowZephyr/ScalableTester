@@ -1,0 +1,7 @@
+A, B, C, D, DEAD
+x, y
+A
+B, D
+(A, x, B), (A, y, C), (B, x, DEAD), (B, y, D), (C, x, DEAD),  (C, y, DEAD), (D, x, DEAD), (D, y, D), (DEAD, x, DEAD), (DEAD, y, DEAD)
+(A, "DEFAULT"), (B, "x|y"), (C, "x|y"), (D, "xy*"), (DEAD, "DEFAULT")
+("x|y", "Hello world"), ("xy*", "Bye World"), ("DEFAULT", "Fail!")

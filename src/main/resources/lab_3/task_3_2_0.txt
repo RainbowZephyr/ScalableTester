@@ -1,0 +1,7 @@
+A, B, C, D
+a, b, c
+A
+D
+(A, a, B), (A, b, A), (A, c, A), (B, a, C), (B, b, A), (B, c, A), (C, a, C), (C, b, D), (C, c, A), (D, a, D), (D, b, D), (D, c, D)
+(A, "DEFAULT"), (B, "a"), (C, "aa"), (D, "(a|b|c)*aab(a|b|c)*")
+("a", "Hi world"), ("aa", "Not today World"), ("(a|b|c)*aab(a|b|c)*", "Bye bye World"), ("DEFAULT", "Fail!")

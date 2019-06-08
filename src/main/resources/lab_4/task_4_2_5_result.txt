@@ -1,0 +1,7 @@
+S : a S'''''' | x S''''' | k m n | m o | epsilon
+S' : y | epsilon
+S'' : w S' | epsilon
+S''' : c S'' | epsilon
+S'''' : z | epsilon
+S''''' : y S'''' | epsilon
+S'''''' : b S''' | epsilon

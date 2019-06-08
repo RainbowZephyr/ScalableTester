@@ -1,0 +1,19 @@
+A : a : $ a b c
+A' : a : $ a b c
+B : b : $ a b c
+C : c : $ a b c
+D : a : $ a b c
+D' : a : $ a b c
+E : b : $ a b c
+F : b : b
+H : a : $ a b c
+H' : a : $ a b c
+I : a : $ a b c
+K : c : c
+S : a b c : a b c
+S' : a b c epsilon : a b c
+S'' : a : a b c
+S0 : a b c epsilon : $
+S0' : a b c : $
+S0'' : a : $
+

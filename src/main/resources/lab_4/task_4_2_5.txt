@@ -1,0 +1,1 @@
+S : a b c w y | a b c w | a b c | a b | a | x y z | x y | x | k m n | m o | epsilon

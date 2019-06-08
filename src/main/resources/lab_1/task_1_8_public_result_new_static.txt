@@ -1,0 +1,475 @@
+static struct rv7xx_power_info *rv770_get_pi_new(struct amdgpu_device *adev_new);
+static struct evergreen_power_info *evergreen_get_pi_new(struct amdgpu_device *adev_new);
+static struct ni_power_info *ni_get_pi_new(struct amdgpu_device *adev_new);
+static struct  si_ps *si_get_ps_new(struct amdgpu_ps *rps_new);
+static int si_populate_voltage_value(struct amdgpu_device *adev_new,
+				     const struct atom_voltage_table *table_new,
+static int si_get_std_voltage_value(struct amdgpu_device *adev_new,
+static int si_write_smc_soft_register(struct amdgpu_device *adev_new,
+static int si_convert_power_level_to_smc(struct amdgpu_device *adev_new,
+					 struct rv7xx_pl *pl_new,
+static int si_calculate_sclk_params(struct amdgpu_device *adev_new,
+static void si_thermal_start_smc_fan_control(struct amdgpu_device *adev_new);
+static void si_fan_ctrl_set_default_mode(struct amdgpu_device *adev_new);
+static void si_dpm_set_irq_funcs(struct amdgpu_device *adev_new);
+static struct si_power_info *si_get_pi_new(struct amdgpu_device *adev_new)
+	struct si_power_info *pi_new = adev->pm.dpm.priv;
+static void si_calculate_leakage_for_v_and_t_formula(const struct ni_leakage_coeffients *coeff_new,
+static void si_calculate_leakage_for_v_and_t(struct amdgpu_device *adev_new,
+					     const struct ni_leakage_coeffients *coeff_new,
+static void si_calculate_leakage_for_v_formula(const struct ni_leakage_coeffients *coeff_new,
+static void si_calculate_leakage_for_v(struct amdgpu_device *adev_new,
+				       const struct ni_leakage_coeffients *coeff_new,
+static void si_update_dte_from_pl2(struct amdgpu_device *adev_new,
+				   struct si_dte_data *dte_data_new)
+static struct rv7xx_power_info *rv770_get_pi_new(struct amdgpu_device *adev_new)
+	struct rv7xx_power_info *pi_new = adev->pm.dpm.priv;
+static struct ni_power_info *ni_get_pi_new(struct amdgpu_device *adev_new)
+	struct ni_power_info *pi_new = adev->pm.dpm.priv;
+static struct si_ps *si_get_ps_new(struct amdgpu_ps *aps_new)
+	struct  si_ps *ps_new = aps->ps_priv;
+static void si_initialize_powertune_defaults(struct amdgpu_device *adev_new)
+	struct ni_power_info *ni_pi_new = ni_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static u32 si_get_smc_power_scaling_factor(struct amdgpu_device *adev_new)
+static u32 si_calculate_cac_wintime(struct amdgpu_device *adev_new)
+static int si_calculate_adjusted_tdp_limits(struct amdgpu_device *adev_new,
+static int si_populate_smc_tdp_limits(struct amdgpu_device *adev_new,
+				      struct amdgpu_ps *amdgpu_state_new)
+	struct ni_power_info *ni_pi_new = ni_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+		struct amdgpu_ppm_table *ppm_new = adev->pm.dpm.dyn_state.ppm_table;
+static int si_populate_smc_tdp_limits_2(struct amdgpu_device *adev_new,
+					struct amdgpu_ps *amdgpu_state_new)
+	struct ni_power_info *ni_pi_new = ni_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static u16 si_calculate_power_efficiency_ratio(struct amdgpu_device *adev_new,
+static bool si_should_disable_uvd_powertune(struct amdgpu_device *adev_new,
+					    struct amdgpu_ps *amdgpu_state_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+struct evergreen_power_info *evergreen_get_pi_new(struct amdgpu_device *adev_new)
+	struct evergreen_power_info *pi_new = adev->pm.dpm.priv;
+static int si_populate_power_containment_values(struct amdgpu_device *adev_new,
+						struct amdgpu_ps *amdgpu_state_new,
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct ni_power_info *ni_pi_new = ni_get_pi(adev);
+	struct  si_ps *state_new = si_get_ps(amdgpu_state);
+static int si_populate_sq_ramping_values(struct amdgpu_device *adev_new,
+					 struct amdgpu_ps *amdgpu_state_new,
+	struct ni_power_info *ni_pi_new = ni_get_pi(adev);
+	struct  si_ps *state_new = si_get_ps(amdgpu_state);
+static int si_enable_power_containment(struct amdgpu_device *adev_new,
+				       struct amdgpu_ps *amdgpu_new_state_new,
+	struct ni_power_info *ni_pi_new = ni_get_pi(adev);
+static int si_initialize_smc_dte_tables(struct amdgpu_device *adev_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+	struct si_dte_data *dte_data_new = &si_pi->dte_data;
+static int si_get_cac_std_voltage_max_min(struct amdgpu_device *adev_new,
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+	struct amdgpu_cac_leakage_table *table_new =
+static int si_init_dte_leakage_table(struct amdgpu_device *adev_new,
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_init_simplified_leakage_table(struct amdgpu_device *adev_new,
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_initialize_smc_cac_tables(struct amdgpu_device *adev_new)
+	struct ni_power_info *ni_pi_new = ni_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_program_cac_config_registers(struct amdgpu_device *adev_new,
+					   const struct si_cac_config_reg *cac_config_regs_new)
+	const struct si_cac_config_reg *config_regs_new = cac_config_regs;
+static int si_initialize_hardware_cac_manager(struct amdgpu_device *adev_new)
+	struct ni_power_info *ni_pi_new = ni_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_enable_smc_cac(struct amdgpu_device *adev_new,
+			     struct amdgpu_ps *amdgpu_new_state_new,
+	struct ni_power_info *ni_pi_new = ni_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_init_smc_spll_table(struct amdgpu_device *adev_new)
+	struct ni_power_info *ni_pi_new = ni_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static u16 si_get_lower_of_leakage_and_vce_voltage(struct amdgpu_device *adev_new,
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_get_vce_clock_voltage(struct amdgpu_device *adev_new,
+	struct amdgpu_vce_clock_voltage_dependency_table *table_new =
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+static int ni_copy_and_switch_arb_sets(struct amdgpu_device *adev_new,
+static void ni_update_current_ps(struct amdgpu_device *adev_new,
+			  struct amdgpu_ps *rps_new)
+	struct si_ps *new_ps_new = si_get_ps(rps);
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct ni_power_info *ni_pi_new = ni_get_pi(adev);
+static void ni_update_requested_ps(struct amdgpu_device *adev_new,
+			    struct amdgpu_ps *rps_new)
+	struct si_ps *new_ps_new = si_get_ps(rps);
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct ni_power_info *ni_pi_new = ni_get_pi(adev);
+static void ni_set_uvd_clock_before_set_eng_clock(struct amdgpu_device *adev_new,
+					   struct amdgpu_ps *new_ps_new,
+					   struct amdgpu_ps *old_ps_new)
+	struct si_ps *new_state_new = si_get_ps(new_ps);
+	struct si_ps *current_state_new = si_get_ps(old_ps);
+static void ni_set_uvd_clock_after_set_eng_clock(struct amdgpu_device *adev_new,
+					  struct amdgpu_ps *new_ps_new,
+					  struct amdgpu_ps *old_ps_new)
+	struct si_ps *new_state_new = si_get_ps(new_ps);
+	struct si_ps *current_state_new = si_get_ps(old_ps);
+static u16 btc_find_voltage(struct atom_voltage_table *table_new, u16 voltage)
+static u32 btc_find_valid_clock(struct amdgpu_clock_array *clocks_new,
+static u32 btc_get_valid_mclk(struct amdgpu_device *adev_new,
+static u32 btc_get_valid_sclk(struct amdgpu_device *adev_new,
+static void btc_get_max_clock_from_voltage_dependency_table(struct amdgpu_clock_voltage_dependency_table *table_new,
+static void btc_apply_voltage_dependency_rules(struct amdgpu_clock_voltage_dependency_table *table_new,
+static void btc_adjust_clock_combinations(struct amdgpu_device *adev_new,
+					  const struct amdgpu_clock_and_voltage_limits *max_limits_new,
+					  struct rv7xx_pl *pl_new)
+static void btc_apply_voltage_delta_rules(struct amdgpu_device *adev_new,
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+static u8 rv770_get_memory_module_index(struct amdgpu_device *adev_new)
+static void rv770_get_max_vddc(struct amdgpu_device *adev_new)
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+static void rv770_get_engine_memory_ss(struct amdgpu_device *adev_new)
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+static void si_apply_state_adjust_rules(struct amdgpu_device *adev_new,
+					struct amdgpu_ps *rps_new)
+	struct  si_ps *ps_new = si_get_ps(rps);
+	struct amdgpu_clock_and_voltage_limits *max_limits_new;
+static int si_read_smc_soft_register(struct amdgpu_device *adev_new,
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_write_smc_soft_register(struct amdgpu_device *adev_new,
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static bool si_is_special_1gb_platform(struct amdgpu_device *adev_new)
+static void si_get_leakage_vddc(struct amdgpu_device *adev_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_get_leakage_voltage_from_leakage_index(struct amdgpu_device *adev_new,
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static void si_set_dpm_event_sources(struct amdgpu_device *adev_new, u32 sources)
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+static void si_enable_auto_throttle_source(struct amdgpu_device *adev_new,
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+static void si_start_dpm(struct amdgpu_device *adev_new)
+static void si_stop_dpm(struct amdgpu_device *adev_new)
+static void si_enable_sclk_control(struct amdgpu_device *adev_new, bool enable)
+static int si_notify_hardware_of_thermal_state(struct amdgpu_device *adev_new,
+static void si_notify_hardware_vpu_recovery_event(struct amdgpu_device *adev_new)
+static int si_notify_hw_of_powersource(struct amdgpu_device *adev_new, bool ac_power)
+static PPSMC_Result si_send_msg_to_smc_with_parameter(struct amdgpu_device *adev_new,
+static int si_restrict_performance_levels_before_switch(struct amdgpu_device *adev_new)
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct amdgpu_ps *rps_new = adev->pm.dpm.current_ps;
+	struct  si_ps *ps_new = si_get_ps(rps);
+static int si_set_boot_state(struct amdgpu_device *adev_new)
+static int si_set_sw_state(struct amdgpu_device *adev_new)
+static int si_halt_smc(struct amdgpu_device *adev_new)
+static int si_resume_smc(struct amdgpu_device *adev_new)
+static void si_dpm_start_smc(struct amdgpu_device *adev_new)
+static void si_dpm_stop_smc(struct amdgpu_device *adev_new)
+static int si_process_firmware_header(struct amdgpu_device *adev_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static void si_read_clock_registers(struct amdgpu_device *adev_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static void si_enable_thermal_protection(struct amdgpu_device *adev_new,
+static void si_enable_acpi_power_management(struct amdgpu_device *adev_new)
+static int si_enter_ulp_state(struct amdgpu_device *adev_new)
+static int si_exit_ulp_state(struct amdgpu_device *adev_new)
+static int si_notify_smc_display_change(struct amdgpu_device *adev_new,
+static void si_program_response_times(struct amdgpu_device *adev_new)
+static void si_program_ds_registers(struct amdgpu_device *adev_new)
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+static void si_program_display_gap(struct amdgpu_device *adev_new)
+static void si_enable_spread_spectrum(struct amdgpu_device *adev_new, bool enable)
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+static void si_setup_bsp(struct amdgpu_device *adev_new)
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+static void si_program_git(struct amdgpu_device *adev_new)
+static void si_program_tp(struct amdgpu_device *adev_new)
+static void si_program_tpp(struct amdgpu_device *adev_new)
+static void si_program_sstp(struct amdgpu_device *adev_new)
+static void si_enable_display_gap(struct amdgpu_device *adev_new)
+static void si_program_vc(struct amdgpu_device *adev_new)
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+static void si_clear_vc(struct amdgpu_device *adev_new)
+static u8 si_get_strobe_mode_settings(struct amdgpu_device *adev_new, u32 mclk)
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+static int si_upload_firmware(struct amdgpu_device *adev_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static bool si_validate_phase_shedding_tables(struct amdgpu_device *adev_new,
+					      const struct atom_voltage_table *table_new,
+					      const struct amdgpu_phase_shedding_limits_table *limits_new)
+static void si_trim_voltage_table_to_fit_state_table(struct amdgpu_device *adev_new,
+					      struct atom_voltage_table *voltage_table_new)
+static int si_get_svi2_voltage_table(struct amdgpu_device *adev_new,
+				     struct amdgpu_clock_voltage_dependency_table *voltage_dependency_table_new,
+				     struct atom_voltage_table *voltage_table_new)
+static int si_construct_voltage_tables(struct amdgpu_device *adev_new)
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static void si_populate_smc_voltage_table(struct amdgpu_device *adev_new,
+					  const struct atom_voltage_table *voltage_table_new,
+static int si_populate_smc_voltage_tables(struct amdgpu_device *adev_new,
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_populate_voltage_value(struct amdgpu_device *adev_new,
+				     const struct atom_voltage_table *table_new,
+static int si_populate_mvdd_value(struct amdgpu_device *adev_new, u32 mclk,
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_get_std_voltage_value(struct amdgpu_device *adev_new,
+static int si_populate_std_voltage_value(struct amdgpu_device *adev_new,
+static int si_populate_phase_shedding_value(struct amdgpu_device *adev_new,
+					    const struct amdgpu_phase_shedding_limits_table *limits_new,
+static int si_init_arb_table_index(struct amdgpu_device *adev_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_initial_switch_from_arb_f0_to_f1(struct amdgpu_device *adev_new)
+static int si_reset_to_default(struct amdgpu_device *adev_new)
+static int si_force_switch_to_arb_f0(struct amdgpu_device *adev_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static u32 si_calculate_memory_refresh_rate(struct amdgpu_device *adev_new,
+static int si_populate_memory_timing_parameters(struct amdgpu_device *adev_new,
+						struct rv7xx_pl *pl_new,
+static int si_do_program_memory_timing_parameters(struct amdgpu_device *adev_new,
+						  struct amdgpu_ps *amdgpu_state_new,
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+	struct  si_ps *state_new = si_get_ps(amdgpu_state);
+static int si_program_memory_timing_parameters(struct amdgpu_device *adev_new,
+					       struct amdgpu_ps *amdgpu_new_state_new)
+static int si_populate_initial_mvdd_value(struct amdgpu_device *adev_new,
+					  struct SISLANDS_SMC_VOLTAGE_VALUE *voltage_new)
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_populate_smc_initial_state(struct amdgpu_device *adev_new,
+					 struct amdgpu_ps *amdgpu_initial_state_new,
+	struct  si_ps *initial_state_new = si_get_ps(amdgpu_initial_state);
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_populate_smc_acpi_state(struct amdgpu_device *adev_new,
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_populate_ulv_state(struct amdgpu_device *adev_new,
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+	struct si_ulv_param *ulv_new = &si_pi->ulv;
+static int si_program_ulv_memory_timing_parameters(struct amdgpu_device *adev_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+	struct si_ulv_param *ulv_new = &si_pi->ulv;
+static void si_get_mvdd_configuration(struct amdgpu_device *adev_new)
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+static int si_init_smc_table(struct amdgpu_device *adev_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+	struct amdgpu_ps *amdgpu_boot_state_new = adev->pm.dpm.boot_ps;
+	const struct si_ulv_param *ulv_new = &si_pi->ulv;
+static int si_calculate_sclk_params(struct amdgpu_device *adev_new,
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_populate_sclk_value(struct amdgpu_device *adev_new,
+static int si_populate_mclk_value(struct amdgpu_device *adev_new,
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static void si_populate_smc_sp(struct amdgpu_device *adev_new,
+			       struct amdgpu_ps *amdgpu_state_new,
+	struct  si_ps *ps_new = si_get_ps(amdgpu_state);
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+static int si_convert_power_level_to_smc(struct amdgpu_device *adev_new,
+					 struct rv7xx_pl *pl_new,
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_populate_smc_t(struct amdgpu_device *adev_new,
+			     struct amdgpu_ps *amdgpu_state_new,
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+	struct  si_ps *state_new = si_get_ps(amdgpu_state);
+static int si_disable_ulv(struct amdgpu_device *adev_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+	struct si_ulv_param *ulv_new = &si_pi->ulv;
+static bool si_is_state_ulv_compatible(struct amdgpu_device *adev_new,
+				       struct amdgpu_ps *amdgpu_state_new)
+	const struct si_power_info *si_pi_new = si_get_pi(adev);
+	const struct si_ulv_param *ulv_new = &si_pi->ulv;
+	const struct  si_ps *state_new = si_get_ps(amdgpu_state);
+static int si_set_power_state_conditionally_enable_ulv(struct amdgpu_device *adev_new,
+						       struct amdgpu_ps *amdgpu_new_state_new)
+	const struct si_power_info *si_pi_new = si_get_pi(adev);
+	const struct si_ulv_param *ulv_new = &si_pi->ulv;
+static int si_convert_power_state_to_smc(struct amdgpu_device *adev_new,
+					 struct amdgpu_ps *amdgpu_state_new,
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct ni_power_info *ni_pi_new = ni_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+	struct  si_ps *state_new = si_get_ps(amdgpu_state);
+static int si_upload_sw_state(struct amdgpu_device *adev_new,
+			      struct amdgpu_ps *amdgpu_new_state_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+	struct  si_ps *new_state_new = si_get_ps(amdgpu_new_state);
+static int si_upload_ulv_state(struct amdgpu_device *adev_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+	struct si_ulv_param *ulv_new = &si_pi->ulv;
+static int si_upload_smc_data(struct amdgpu_device *adev_new)
+	struct amdgpu_crtc *amdgpu_crtc_new = NULL;
+static int si_set_mc_special_registers(struct amdgpu_device *adev_new,
+				       struct si_mc_reg_table *table_new)
+static void si_set_valid_flag(struct si_mc_reg_table *table_new)
+static void si_set_s0_mc_reg_index(struct si_mc_reg_table *table_new)
+static int si_copy_vbios_mc_reg_table(struct atom_mc_reg_table *table_new,
+				      struct si_mc_reg_table *si_table_new)
+static int si_initialize_mc_reg_table(struct amdgpu_device *adev_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+	struct atom_mc_reg_table *table_new;
+	struct si_mc_reg_table *si_table_new = &si_pi->mc_reg_table;
+static void si_populate_mc_reg_addresses(struct amdgpu_device *adev_new,
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static void si_convert_mc_registers(const struct si_mc_reg_entry *entry_new,
+static void si_convert_mc_reg_table_entry_to_smc(struct amdgpu_device *adev_new,
+						 struct rv7xx_pl *pl_new,
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static void si_convert_mc_reg_table_to_smc(struct amdgpu_device *adev_new,
+					   struct amdgpu_ps *amdgpu_state_new,
+	struct si_ps *state_new = si_get_ps(amdgpu_state);
+static int si_populate_mc_reg_table(struct amdgpu_device *adev_new,
+				    struct amdgpu_ps *amdgpu_boot_state_new)
+	struct  si_ps *boot_state_new = si_get_ps(amdgpu_boot_state);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+	struct si_ulv_param *ulv_new = &si_pi->ulv;
+static int si_upload_mc_reg_table(struct amdgpu_device *adev_new,
+				  struct amdgpu_ps *amdgpu_new_state_new)
+	struct si_ps *new_state_new = si_get_ps(amdgpu_new_state);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static void si_enable_voltage_control(struct amdgpu_device *adev_new, bool enable)
+static enum amdgpu_pcie_gen si_get_maximum_link_speed(struct amdgpu_device *adev_new,
+						      struct amdgpu_ps *amdgpu_state_new)
+	struct si_ps *state_new = si_get_ps(amdgpu_state);
+static u16 si_get_current_pcie_speed(struct amdgpu_device *adev_new)
+static void si_request_link_speed_change_before_state_change(struct amdgpu_device *adev_new,
+							     struct amdgpu_ps *amdgpu_new_state_new,
+							     struct amdgpu_ps *amdgpu_current_state_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static void si_notify_link_speed_change_after_state_change(struct amdgpu_device *adev_new,
+							   struct amdgpu_ps *amdgpu_new_state_new,
+							   struct amdgpu_ps *amdgpu_current_state_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_ds_request(struct amdgpu_device *adev_new,
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+static void si_set_max_cu_value(struct amdgpu_device *adev_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_patch_single_dependency_table_based_on_leakage(struct amdgpu_device *adev_new,
+							     struct amdgpu_clock_voltage_dependency_table *table_new)
+static int si_patch_dependency_tables_based_on_leakage(struct amdgpu_device *adev_new)
+static void si_set_pcie_lane_width_in_smc(struct amdgpu_device *adev_new,
+					  struct amdgpu_ps *amdgpu_new_state_new,
+					  struct amdgpu_ps *amdgpu_current_state_new)
+static void si_dpm_setup_asic(struct amdgpu_device *adev_new)
+static int si_thermal_enable_alert(struct amdgpu_device *adev_new,
+static int si_thermal_set_temperature_range(struct amdgpu_device *adev_new,
+static void si_fan_ctrl_set_static_mode(struct amdgpu_device *adev_new, u32 mode)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_thermal_setup_fan_table(struct amdgpu_device *adev_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_fan_ctrl_start_smc_fan_control(struct amdgpu_device *adev_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_fan_ctrl_stop_smc_fan_control(struct amdgpu_device *adev_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static int si_fan_ctrl_get_fan_speed_rpm(struct amdgpu_device *adev_new,
+static int si_fan_ctrl_set_fan_speed_rpm(struct amdgpu_device *adev_new,
+static void si_fan_ctrl_set_default_mode(struct amdgpu_device *adev_new)
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+static void si_thermal_start_smc_fan_control(struct amdgpu_device *adev_new)
+static void si_thermal_initialize(struct amdgpu_device *adev_new)
+static int si_thermal_start_thermal_controller(struct amdgpu_device *adev_new)
+static void si_thermal_stop_thermal_controller(struct amdgpu_device *adev_new)
+static int si_dpm_enable(struct amdgpu_device *adev_new)
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+	struct amdgpu_ps *boot_ps_new = adev->pm.dpm.boot_ps;
+static int si_set_temperature_range(struct amdgpu_device *adev_new)
+static void si_dpm_disable(struct amdgpu_device *adev_new)
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+	struct amdgpu_ps *boot_ps_new = adev->pm.dpm.boot_ps;
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct amdgpu_ps *new_ps_new = &requested_ps;
+static int si_power_control_set_level(struct amdgpu_device *adev_new)
+	struct amdgpu_ps *new_ps_new = adev->pm.dpm.requested_ps;
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct amdgpu_ps *new_ps_new = &eg_pi->requested_rps;
+	struct amdgpu_ps *old_ps_new = &eg_pi->current_rps;
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct amdgpu_ps *new_ps_new = &eg_pi->requested_rps;
+void si_dpm_reset_asic(struct amdgpu_device *adev_new)
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+static void si_parse_pplib_non_clock_info(struct amdgpu_device *adev_new,
+					  struct amdgpu_ps *rps_new,
+					  struct _ATOM_PPLIB_NONCLOCK_INFO *non_clock_info_new,
+static void si_parse_pplib_clock_info(struct amdgpu_device *adev_new,
+				      struct amdgpu_ps *rps_new, int index,
+	struct rv7xx_power_info *pi_new = rv770_get_pi(adev);
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct si_power_info *si_pi_new = si_get_pi(adev);
+	struct  si_ps *ps_new = si_get_ps(rps);
+	struct rv7xx_pl *pl_new = &ps->performance_levels[index];
+static int si_parse_power_table(struct amdgpu_device *adev_new)
+	struct amdgpu_mode_info *mode_info_new = &adev->mode_info;
+	struct _ATOM_PPLIB_NONCLOCK_INFO *non_clock_info_new;
+	struct _StateArray *state_array_new;
+	struct _ClockInfoArray *clock_info_array_new;
+	struct _NonClockInfoArray *non_clock_info_array_new;
+	struct  si_ps *ps_new;
+static int si_dpm_init(struct amdgpu_device *adev_new)
+	struct rv7xx_power_info *pi_new;
+	struct evergreen_power_info *eg_pi_new;
+	struct ni_power_info *ni_pi_new;
+	struct si_power_info *si_pi_new;
+static void si_dpm_fini(struct amdgpu_device *adev_new)
+						    struct seq_file *m_new)
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct amdgpu_ps *rps_new = &eg_pi->current_rps;
+	struct  si_ps *ps_new = si_get_ps(rps);
+	struct rv7xx_pl *pl_new;
+static int si_dpm_set_interrupt_state(struct amdgpu_device *adev_new,
+				      struct amdgpu_irq_src *source_new,
+static int si_dpm_process_interrupt(struct amdgpu_device *adev_new,
+				    struct amdgpu_irq_src *source_new,
+				    struct amdgpu_iv_entry *entry_new)
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+static int si_dpm_init_microcode(struct amdgpu_device *adev_new)
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct  si_ps *requested_state_new = si_get_ps(&eg_pi->requested_rps);
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct  si_ps *requested_state_new = si_get_ps(&eg_pi->requested_rps);
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct amdgpu_ps *rps_new = (struct amdgpu_ps *)current_ps;
+	struct  si_ps *ps_new = si_get_ps(rps);
+	struct rv7xx_pl *pl_new;
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+static inline bool si_are_power_levels_equal(const struct rv7xx_pl  *si_cpl1_new,
+						const struct rv7xx_pl *si_cpl2_new)
+	struct si_ps *si_cps_new;
+	struct si_ps *si_rps_new;
+	struct amdgpu_ps *cps_new = (struct amdgpu_ps *)current_ps;
+	struct amdgpu_ps *rps_new = (struct amdgpu_ps *)request_ps;
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct amdgpu_device *adev_new = (struct amdgpu_device *)handle;
+	struct evergreen_power_info *eg_pi_new = evergreen_get_pi(adev);
+	struct amdgpu_ps *rps_new = &eg_pi->current_rps;
+	struct  si_ps *ps_new = si_get_ps(rps);
+static void si_dpm_set_irq_funcs(struct amdgpu_device *adev_new)

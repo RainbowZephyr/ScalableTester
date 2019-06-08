@@ -1,0 +1,7 @@
+AAA 
+ADD BX, 5  
+INC CX, 101010b 
+ADD DX, AX
+ADD DX, [AX]
+
+

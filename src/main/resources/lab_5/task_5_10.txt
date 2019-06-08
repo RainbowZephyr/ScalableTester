@@ -1,0 +1,18 @@
+S0 : I S0'' | S S0' | A B | B C | F B | b | K C | c | epsilon
+S : I S'' | A B S' | B C S' | F B S' | b S' | K C S' | c S'
+A : I A'
+B : F B | b
+C : K C | c
+D : I D'
+E : F B C | b C
+F : b
+H : I H'
+I : a
+K : c
+S' : D S' | E S' | B S' | A S' | C S' | epsilon
+S0' : D | E | B | A | C
+S0'' : H | I
+S'' : H S' | I S'
+A' : H | I
+D' : H B | I B
+H' : H I | I I

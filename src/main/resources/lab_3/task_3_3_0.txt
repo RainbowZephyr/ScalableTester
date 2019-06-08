@@ -1,0 +1,7 @@
+A, B, C, D, E, F, G, H, I
+a, b
+A
+E, G, H, I
+(A, a, B), (A, b, C), (B, a, B), (B, b, D), (C, a, B), (C, b, C), (D, a, B), (D, b, E), (E, a, F), (E, b, G), (F, a, F), (F, b, H), (G, a, F), (G, b, G), (H, a, F), (H, b, I), (I, a, F), (I, b, G) 
+(A, "Lollygag"), (B, "Bumfuzzle"), (C, "Brouhaha"), (D, "Cattywampus"), (E, "Nincompoop"), (F, "Comeuppance"), (G, "Bowyang"), (H, "Yarborough"), (I, "Nincompoop")
+("Lollygag", "Fail!"), ("Bumfuzzle", "Not today World"), ("Brouhaha", "Bye bye World"), ("Cattywampus", "Bye noob"), ("Nincompoop", "Hi noob"), ("Comeuppance", "End Session"), ("Bowyang", "Start Session"), ("Yarborough", "potato")

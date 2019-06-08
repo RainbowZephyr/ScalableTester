@@ -1,0 +1,2 @@
+S : a s : $
+A : a epsilon : s
